@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shlok Gaur - GDG Thapar Netflix Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .glass-card {
+            background: rgba(10, 10, 12, 0.78);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: #E50914;
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px -5px rgba(229, 9, 20, 0.35);
+            z-index: 20;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E50914;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b91c1c;
+        }
+
+        .hero-text-glow {
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.6);
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-gray-100 antialiased selection:bg-red-600 selection:text-white">
+
+    <!-- MATRIX CANVAS BACKGROUND -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- MAIN CONTAINER -->
+    <div class="relative z-10 flex flex-col min-h-screen">
+
+        <!-- NAVBAR -->
+        <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-black/90 via-black/60 to-transparent backdrop-blur-sm">
+            <div class="flex items-center space-x-8">
+                <span class="text-3xl font-black tracking-wider text-[#E50914] cursor-pointer">SHLOK GAUR</span>
+                <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-300">
+                    <a href="#hero" class="hover:text-white transition">Home</a>
+                    <a href="#skills" class="hover:text-white transition">Skills & Focus</a>
+                    <a href="#projects" class="hover:text-white transition">Projects & Interests</a>
+                    <a href="#gdg" class="hover:text-white transition">Why GDG?</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://github.com/shlokg169-tech" target="_blank" rel="noopener noreferrer" class="p-2 text-gray-300 hover:text-white transition">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/shlok-gaur" target="_blank" rel="noopener noreferrer" class="p-2 text-gray-300 hover:text-white transition">
+                    <i class="fab fa-linkedin text-xl"></i>
+                </a>
+                <a href="mailto:shlokg169@gmail.com" class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#E50914] rounded hover:bg-red-700 transition shadow-lg shadow-red-900/40">
+                    Contact Me
+                </a>
+            </div>
+        </nav>
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative pt-32 pb-20 px-6 md:px-16 flex flex-col justify-end min-h-[85vh] bg-gradient-to-t from-black via-black/40 to-transparent">
+            <div class="max-w-3xl space-y-5">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-red-500 bg-red-950/60 border border-red-800/60 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span>First-Year B.E. Student • Thapar Institute</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white hero-text-glow">
+                    SHLOK GAUR
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 font-normal leading-relaxed">
+                    Learning C++ & Data Structures and Algorithms through Apna College. Interested in management, finance, logical thinking, and prompt engineering with basic HTML knowledge. Applying for Google Developer Groups (GDG) Thapar.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button onclick="openModal('modal-gdg')" class="px-8 py-3 bg-white text-black font-bold text-base rounded flex items-center space-x-2 hover:bg-gray-200 transition shadow-lg">
+                        <i class="fas fa-play text-black"></i>
+                        <span>Why GDG Fit</span>
+                    </button>
+                    <button onclick="openModal('modal-skills')" class="px-8 py-3 bg-gray-800/80 text-white font-bold text-base rounded flex items-center space-x-2 hover:bg-gray-700/80 backdrop-blur-md transition border border-gray-600/50">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Explore Skills</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENT ROWS -->
+        <div class="px-6 md:px-16 space-y-12 pb-24">
+
+            <!-- CATEGORY 1: TOP PICKS / SKILLS -->
+            <section id="skills" class="space-y-4">
+                <h2 class="text-2xl font-bold tracking-wide text-white flex items-center space-x-2">
+                    <span class="w-1 h-6 bg-[#E50914] inline-block rounded-full"></span>
+                    <span>Top Focus & Technical Skills</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    
+                    <div onclick="openModal('modal-dsa')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Primary Language</span>
+                            <h3 class="text-xl font-bold text-white mt-1">C++ & DSA</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Actively learning core data structures & algorithms concepts using C++ via Apna College.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">95% Match</span>
+                            <span>Apna College</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-logic')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Core Trait</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Logical Thinker</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Structured reasoning, structured problem decomposition, and algorithmic approach to challenges.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">94% Match</span>
+                            <span>Problem Solving</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-finance')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Domain Interest</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Interest in Finance</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Keen focus on financial concepts, quantitative reasoning, risk evaluation, and economic trends.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">92% Match</span>
+                            <span>Finance & Markets</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-mgmt')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Leadership Focus</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Management</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Analytical mindset focused on organizational strategy, team coordination, and event planning.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">90% Match</span>
+                            <span>Strategy & Operations</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-collab')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Soft Skill</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Team Collaboration</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Thrives in peer environments, clear communication, and working toward collective community goals.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">91% Match</span>
+                            <span>Community Synergy</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-adapt')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Growth Mindset</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Continuous Adaptability</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Fast learner eager to pick up new frameworks, tech stacks, and tools as requirements evolve.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">89% Match</span>
+                            <span>Agile Learning</span>
+                        </div>
+                    </div>
+
+                    <div onclick="openModal('modal-web')" class="glass-card rounded-lg p-6 cursor-pointer flex flex-col justify-between h-52 relative overflow-hidden md:col-span-2 lg:col-span-2">
+                        <div>
+                            <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Tools & Web Basics</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Prompt Engineering & Basics of HTML</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">Prompt engineering and understanding basics of HTML to build custom web interfaces and prototypes.</p>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-800/80 pt-3">
+                            <span class="text-green-400 font-semibold">88% Match</span>
+                            <span>AI Tools & HTML Basics</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 2: CONTINUE WATCHING / DETAILS -->
+            <section id="projects" class="space-y-4">
+                <h2 class="text-2xl font-bold tracking-wide text-white flex items-center space-x-2">
+                    <span class="w-1 h-6 bg-[#E50914] inline-block rounded-full"></span>
+                    <span>Continue Watching (Current Learning & Background)</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <div class="glass-card rounded-lg p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Education</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Thapar Institute of Engineering & Technology</h3>
+                                <p class="text-sm text-gray-300 mt-1">Bachelor of Engineering (2026 – 2030)</p>
+                            </div>
+                            <i class="fas fa-university text-3xl text-gray-500"></i>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                            First-year undergraduate building foundations in engineering mathematics, computer programming, logical problem solving, and analytical thinking.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-lg p-6">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-red-500 uppercase tracking-wider">Featured Application</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Netflix Interactive Web Resume</h3>
+                                <p class="text-sm text-gray-300 mt-1">Custom Portfolio Web App</p>
+                            </div>
+                            <i class="fas fa-film text-3xl text-red-600"></i>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-4 leading-relaxed">
+                            Created with prompt engineering and understanding basics of HTML/CSS to build custom web interfaces. Features interactive modals, glassmorphism UI, and C++ matrix code rain background.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- CATEGORY 3: GDG THAPAR FIT -->
+            <section id="gdg" class="space-y-4">
+                <h2 class="text-2xl font-bold tracking-wide text-white flex items-center space-x-2">
+                    <span class="w-1 h-6 bg-[#E50914] inline-block rounded-full"></span>
+                    <span>GDG Thapar Application Highlights</span>
+                </h2>
+                <div class="glass-card rounded-lg p-8 border-l-4 border-l-[#E50914]">
+                    <h3 class="text-2xl font-bold text-white mb-3">Why Join Google Developer Groups (GDG) Thapar?</h3>
+                    <p class="text-gray-300 text-base leading-relaxed mb-6">
+                        I am eager to contribute my energy, learning mindset, logical problem-solving, and organizational interest to GDG Thapar. With a combination of technical problem solving in C++ and a keen interest in management, finance, and AI tools, I am excited to collaborate on campus tech initiatives and help build an active developer community.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div class="bg-black/50 p-4 rounded border border-gray-800">
+                            <i class="fas fa-code text-red-500 mb-2 text-lg"></i>
+                            <h4 class="font-bold text-white">Constant Learner</h4>
+                            <p class="text-xs text-gray-400 mt-1">Dedicated to mastering C++ and Data Structures daily.</p>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded border border-gray-800">
+                            <i class="fas fa-users text-red-500 mb-2 text-lg"></i>
+                            <h4 class="font-bold text-white">Management Mindset</h4>
+                            <p class="text-xs text-gray-400 mt-1">Keen interest in community management, events, and teamwork.</p>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded border border-gray-800">
+                            <i class="fas fa-brain text-red-500 mb-2 text-lg"></i>
+                            <h4 class="font-bold text-white">Logical Thinker</h4>
+                            <p class="text-xs text-gray-400 mt-1">Structured problem decomposition and continuous learning.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-auto py-8 px-6 border-t border-gray-900 bg-black/90 text-center text-xs text-gray-500">
+            <p>© 2026 Shlok Gaur • Built for GDG Thapar Application</p>
+            <p class="mt-2 space-x-4">
+                <a href="https://github.com/shlokg169-tech" target="_blank" class="hover:text-gray-300">GitHub: shlokg169-tech</a>
+                <span>•</span>
+                <a href="https://www.linkedin.com/in/shlok-gaur" target="_blank" class="hover:text-gray-300">LinkedIn: Shlok Gaur</a>
+                <span>•</span>
+                <a href="mailto:shlokg169@gmail.com" class="hover:text-gray-300">shlokg169@gmail.com</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- MODAL DIALOGS -->
+    <div id="modalOverlay" onclick="closeAllModals()" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        
+        <div onclick="event.stopPropagation()" class="relative w-full max-w-2xl bg-zinc-950 border border-zinc-800 rounded-lg p-6 md:p-8 shadow-2xl text-gray-100">
+            <button onclick="closeAllModals()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div id="modal-dsa" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Technical Focus</span>
+                <h3 class="text-2xl font-bold text-white">C++ & Data Structures and Algorithms</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Currently pursuing a structured DSA track in C++ through Apna College. Focusing on core foundational topics including arrays, vectors, pointers, recursion, and basic algorithmic problem solving.
+                </p>
+                <div class="bg-black/50 p-4 rounded border border-gray-800 text-xs font-mono text-green-400">
+                    #include &lt;iostream&gt;<br>
+                    using namespace std;<br><br>
+                    int main() {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;cout &lt;&lt; "Learning C++ & DSA for GDG Thapar!" &lt;&lt; endl;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return 0;<br>
+                    }
+                </div>
+            </div>
+
+            <div id="modal-logic" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Core Skill</span>
+                <h3 class="text-2xl font-bold text-white">Logical Thinking & Problem Solving</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Approaching technical and real-world challenges through systematic logic, breaking complex problems down into step-by-step modular components.
+                </p>
+            </div>
+
+            <div id="modal-finance" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Domain Interest</span>
+                <h3 class="text-2xl font-bold text-white">Finance & Quantitative Analysis</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Passionate about understanding financial markets, business economics, asset management, and quantitative decision-making frameworks.
+                </p>
+            </div>
+
+            <div id="modal-mgmt" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Domain Interest</span>
+                <h3 class="text-2xl font-bold text-white">Management & Leadership</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Strong interest in strategic management, event organizing, team coordination, and financial logic. Aiming to blend technical understanding with managerial skills in community initiatives.
+                </p>
+            </div>
+
+            <div id="modal-collab" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Soft Skill</span>
+                <h3 class="text-2xl font-bold text-white">Team Collaboration</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Strong interpersonal communication and collaborative mindset, eager to work alongside peers and seniors on community initiatives at GDG Thapar.
+                </p>
+            </div>
+
+            <div id="modal-adapt" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Growth Mindset</span>
+                <h3 class="text-2xl font-bold text-white">Continuous Adaptability</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Quick to adapt to new environments, methodologies, and technologies, constantly refining skill sets based on feedback and practical demands.
+                </p>
+            </div>
+
+            <div id="modal-web" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Skill & Methodology</span>
+                <h3 class="text-2xl font-bold text-white">Prompt Engineering & Basics of HTML</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Prompt engineering and understanding basics of HTML/CSS to build custom web interfaces and prototypes efficiently.
+                </p>
+            </div>
+
+            <div id="modal-gdg" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Community Motivation</span>
+                <h3 class="text-2xl font-bold text-white">Why Join GDG Thapar?</h3>
+                <p class="text-gray-300 leading-relaxed text-sm">
+                    Joining GDG Thapar gives me the platform to collaborate with fellow developers, learn alongside passionate seniors, and actively contribute to hosting tech events, workshops, and student initiatives on campus.
+                </p>
+            </div>
+
+            <div id="modal-skills" class="modal-item hidden space-y-4">
+                <span class="text-xs font-bold text-red-500 uppercase tracking-widest">Overview</span>
+                <h3 class="text-2xl font-bold text-white">Shlok Gaur - Skill Snapshot</h3>
+                <ul class="list-disc list-inside space-y-2 text-sm text-gray-300">
+                    <li><strong class="text-white">Programming Language:</strong> C++</li>
+                    <li><strong class="text-white">DSA Learning:</strong> Apna College Coursework</li>
+                    <li><strong class="text-white">Special Interests:</strong> Management & Finance</li>
+                    <li><strong class="text-white">Core Strengths:</strong> Logical Thinking, Teamwork, Adaptability</li>
+                    <li><strong class="text-white">Web & AI Tools:</strong> Prompt Engineering, Basics of HTML</li>
+                    <li><strong class="text-white">Institution:</strong> Thapar Institute of Engineering & Technology (2026–2030)</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const cppCodeChars = [
+            '#include', '<iostream>', 'vector<int>', 'int main()', 'cout<<', 'cin>>',
+            'return 0;', 'std::', 'void', 'for(int i=0)', 'while(true)', 'if(x>0)',
+            '{', '}', '[ ]', '0', '1', 'struct', 'class', 'auto', 'nullptr', 'NULL'
+        ];
+
+        const fontSize = 14;
+        const columns = Math.floor(window.innerWidth / 80);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = '13px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = cppCodeChars[Math.floor(Math.random() * cppCodeChars.length)];
+                const x = i * 85;
+                const y = drops[i] * fontSize * 1.5;
+
+                ctx.fillStyle = Math.random() > 0.85 ? '#ff4d4d' : '#b91c1c';
+                ctx.fillText(text, x, y);
+
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        function openModal(modalId) {
+            document.getElementById('modalOverlay').classList.remove('hidden');
+            const items = document.querySelectorAll('.modal-item');
+            items.forEach(item => item.classList.add('hidden'));
+            
+            const target = document.getElementById(modalId);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+        }
+
+        function closeAllModals() {
+            document.getElementById('modalOverlay').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
