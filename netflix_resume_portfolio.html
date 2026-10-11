@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shlok Gaur - Netflix Resume | GDG Thapar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .text-netflix-red {
+            color: #E50914;
+        }
+        .bg-netflix-red {
+            background-color: #E50914;
+        }
+        .border-netflix-red {
+            border-color: #E50914;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Balanced vignette overlay for the perfect middle-ground background level */
+        .hero-vignette {
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(5,5,5,0.85) 75%, #050505 100%);
+        }
+        .card-hover-effect {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: scale(1.03);
+            z-index: 20;
+            border-color: #E50914;
+            box-shadow: 0 10px 25px -5px rgba(229, 9, 20, 0.3);
+            background-color: rgba(15, 15, 18, 0.92);
+        }
+        canvas#matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            /* Balanced 0.35 opacity - perfect balance between clear matrix and readable text */
+            opacity: 0.35;
+        }
+    </style>
+</head>
+<body class="bg-[#050505] text-white relative">
+
+    <canvas id="matrix"></canvas>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-4 bg-black/80 backdrop-blur-md border-b border-zinc-800/60 transition-all duration-300">
+        <div class="flex items-center space-x-8">
+            <span class="text-netflix-red text-2xl md:text-3xl font-black tracking-tighter uppercase cursor-pointer">SHLOK GAUR</span>
+            <div class="hidden md:flex space-x-6 text-sm text-gray-300 font-medium">
+                <a href="#hero" class="hover:text-white transition">Home</a>
+                <a href="#top-picks" class="hover:text-white transition">Top Picks for GDG</a>
+                <a href="#continue-watching" class="hover:text-white transition">Continue Watching</a>
+                <a href="#trending" class="hover:text-white transition">Trending Now</a>
+                <a href="#gdg-fit" class="hover:text-white transition">GDG Alignment</a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button onclick="openContactModal()" class="bg-netflix-red hover:bg-red-700 text-white px-4 py-1.5 rounded text-sm font-semibold transition shadow-md flex items-center space-x-2">
+                <i class="fa-solid fa-plus"></i>
+                <span>My List</span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative min-h-[85vh] flex items-end justify-start px-6 md:px-16 pb-16 pt-32 z-10">
+        <div class="absolute inset-0 hero-vignette -z-10"></div>
+        
+        <div class="max-w-3xl space-y-5">
+            <div class="flex items-center space-x-3">
+                <span class="bg-netflix-red text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded tracking-wider uppercase">GDG APPLICANT</span>
+                <span class="text-gray-300 text-xs tracking-widest font-mono uppercase">SEASON 1 • THAPAR INSTITUTE</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight text-white drop-shadow-md">
+                SHLOK GAUR
+            </h1>
+
+            <p class="text-gray-200 text-base md:text-lg leading-relaxed max-w-2xl bg-black/70 backdrop-blur-md p-5 rounded-lg border border-zinc-800/80 shadow-2xl">
+                First-Year Engineering Student at <strong class="text-white">Thapar Institute of Engineering & Technology</strong>. Actively mastering C++ & Data Structures while blending logical problem solving with organizational management and strategic thinking.
+            </p>
+            
+            <div class="flex items-center space-x-4 pt-2">
+                <button onclick="scrollToSection('top-picks')" class="bg-white hover:bg-gray-200 text-black font-extrabold px-6 py-3 rounded flex items-center space-x-2 transition shadow-lg text-sm md:text-base">
+                    <i class="fa-solid fa-play text-lg text-netflix-red"></i>
+                    <span>Explore Skills</span>
+                </button>
+                <button onclick="openContactModal()" class="bg-zinc-900/80 hover:bg-zinc-800 text-white border border-zinc-700/80 font-semibold px-6 py-3 rounded flex items-center space-x-2 transition text-sm md:text-base shadow-lg backdrop-blur-sm">
+                    <i class="fa-solid fa-plus text-netflix-red"></i>
+                    <span>My List (Contact)</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="px-6 md:px-16 py-8 space-y-12 relative z-10 bg-black/60 backdrop-blur-sm">
+
+        <!-- ROW 1: TOP PICKS FOR GDG -->
+        <section id="top-picks" class="space-y-4">
+            <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+                <h2 class="text-xl md:text-2xl font-black tracking-wider uppercase text-white flex items-center space-x-2">
+                    <span class="w-2 h-6 bg-netflix-red rounded-sm inline-block"></span>
+                    <span>Top Picks for GDG</span>
+                </h2>
+                <span class="text-xs text-netflix-red font-mono uppercase tracking-widest">11 Items</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                
+                <div onclick="openDetailModal('C++ Core Programming', 'Strong foundation in object-oriented programming, standard template library (STL), memory management, and pointers using C++.', 'Technical Skill')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-code text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">01</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">C++ Fundamentals</h3>
+                        <p class="text-[11px] text-gray-400">OOP & Syntax</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Data Structures & Algorithms', 'Active learning journey through arrays, vectors, recursion, sorting algorithms, and complexity analysis.', 'Learning Focus')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-diagram-project text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">02</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">DSA Practice</h3>
+                        <p class="text-[11px] text-gray-400">Apna College Series</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Management & Logistics', 'Organizing tech meetups, coordinating events, managing timelines, and handling operational logistics for student activities.', 'Soft Skill')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-list-check text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">03</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Event Management</h3>
+                        <p class="text-[11px] text-gray-400">Execution & Logistics</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Financial Strategy & Budgeting', 'Interest in resource allocation, sponsorship strategy, budget management, and financial planning for campus initiatives.', 'Domain Interest')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-chart-line text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">04</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Financial Strategy</h3>
+                        <p class="text-[11px] text-gray-400">Budgeting & Analysis</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Version Control with Git', 'Familiar with basic repository creation, commits, branching, and pushing code onto GitHub profile (shlokg169-tech).', 'Tooling')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-brands fa-github text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">05</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Git & GitHub</h3>
+                        <p class="text-[11px] text-gray-400">Version Control</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Web Development Fundamentals', 'Building web pages with responsive layouts using HTML5, CSS3, and modern frontend styling frameworks.', 'Frontend')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-laptop-code text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">06</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Web Basics</h3>
+                        <p class="text-[11px] text-gray-400">HTML / CSS / JS</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Rapid Prototyping', 'Ability to quickly draft UI ideas, portfolio layouts, and structured project prototypes.', 'Design & Dev')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-lightbulb text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">07</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Rapid Prototyping</h3>
+                        <p class="text-[11px] text-gray-400">UI/UX Concepts</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Community Engagement', 'Active involvement in peer groups, tech discussions, and campus society initiatives.', 'Community')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-users text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">08</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Community Drive</h3>
+                        <p class="text-[11px] text-gray-400">Peer Collaboration</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Problem Solving', 'Structured approach to breaking down algorithmic problems into efficient logical components.', 'Core Ability')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-brain text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">09</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Problem Solving</h3>
+                        <p class="text-[11px] text-gray-400">Algorithmic Logic</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Presentation & Public Speaking', 'Confident communicator capable of presenting tech topics, pitching ideas, and conducting sessions.', 'Soft Skill')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-bullhorn text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">10</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Presentation</h3>
+                        <p class="text-[11px] text-gray-400">Public Speaking</p>
+                    </div>
+                </div>
+
+                <div onclick="openDetailModal('Strategic Planning', 'Combining engineering logic with high-level strategic planning for events, projects, and personal milestones.', 'Leadership')" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-4 rounded-md card-hover-effect cursor-pointer flex flex-col justify-between h-36 shadow-lg">
+                    <div class="flex justify-between items-start">
+                        <i class="fa-solid fa-chess text-netflix-red text-xl"></i>
+                        <span class="text-[10px] text-zinc-500 font-mono">11</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Strategic Planning</h3>
+                        <p class="text-[11px] text-gray-400">Leadership Focus</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ROW 2: CONTINUE WATCHING -->
+        <section id="continue-watching" class="space-y-4">
+            <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+                <h2 class="text-xl md:text-2xl font-black tracking-wider uppercase text-white flex items-center space-x-2">
+                    <span class="w-2 h-6 bg-netflix-red rounded-sm inline-block"></span>
+                    <span>Continue Watching</span>
+                </h2>
+                <span class="text-xs text-gray-400 uppercase font-mono">Active Practice</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md rounded-md p-5 card-hover-effect space-y-3 shadow-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="text-netflix-red text-xs font-mono font-bold uppercase">Episode 1</span>
+                        <span class="text-[10px] bg-zinc-900 text-gray-300 px-2 py-0.5 rounded border border-zinc-800">In Progress</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">C++ DSA Mastery Series</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Working through Apna College C++ DSA coursework covering vectors, memory pointers, searching, and sorting algorithms.</p>
+                    <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-netflix-red h-full w-3/5"></div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md rounded-md p-5 card-hover-effect space-y-3 shadow-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="text-netflix-red text-xs font-mono font-bold uppercase">Episode 2</span>
+                        <span class="text-[10px] bg-netflix-red text-white font-bold px-2 py-0.5 rounded">Completed</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Interactive Netflix Portfolio</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Single-page web experience showcasing personal portfolio in a streaming layout with continuous matrix background.</p>
+                    <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-netflix-red h-full w-full"></div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md rounded-md p-5 card-hover-effect space-y-3 shadow-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="text-netflix-red text-xs font-mono font-bold uppercase">Episode 3</span>
+                        <span class="text-[10px] bg-zinc-900 text-gray-300 px-2 py-0.5 rounded border border-zinc-800">Lab Practice</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Computer Science Foundations</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">First-year core curriculum coursework at Thapar Institute covering computing fundamentals and algorithm logic.</p>
+                    <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-netflix-red h-full w-1/2"></div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md rounded-md p-5 card-hover-effect space-y-3 shadow-lg">
+                    <div class="flex justify-between items-center">
+                        <span class="text-netflix-red text-xs font-mono font-bold uppercase">Episode 4</span>
+                        <span class="text-[10px] bg-zinc-900 text-gray-300 px-2 py-0.5 rounded border border-zinc-800">Upcoming</span>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Command Line & Developer Tools</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Exploring Linux terminal environments, shell scripts, and GitHub workflow tools for software development.</p>
+                    <div class="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-netflix-red h-full w-1/4"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ROW 3: TRENDING NOW -->
+        <section id="trending" class="space-y-4">
+            <div class="flex items-center justify-between border-b border-zinc-800/80 pb-2">
+                <h2 class="text-xl md:text-2xl font-black tracking-wider uppercase text-white flex items-center space-x-2">
+                    <span class="w-2 h-6 bg-netflix-red rounded-sm inline-block"></span>
+                    <span>Trending Now</span>
+                </h2>
+                <span class="text-xs text-gray-400 uppercase font-mono">Academic Journey</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-6 rounded-md space-y-3 border-l-4 border-l-netflix-red shadow-lg">
+                    <span class="text-xs text-netflix-red font-mono uppercase font-bold">Thapar Institute • 2026</span>
+                    <h3 class="text-lg font-bold text-white">B.E. Computer Engineering / CS</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">First-year undergraduate building solid foundation in computing, problem solving, mathematics, and engineering principles.</p>
+                </div>
+
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-6 rounded-md space-y-3 border-l-4 border-l-netflix-red shadow-lg">
+                    <span class="text-xs text-netflix-red font-mono uppercase font-bold">Focus Area</span>
+                    <h3 class="text-lg font-bold text-white">Data Structures & Logic</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Dedicated focus on mastering algorithmic complexity, linear data structures, and optimized problem solving.</p>
+                </div>
+
+                <div class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md p-6 rounded-md space-y-3 border-l-4 border-l-netflix-red shadow-lg">
+                    <span class="text-xs text-netflix-red font-mono uppercase font-bold">Extracurricular</span>
+                    <h3 class="text-lg font-bold text-white">Tech Community Aspirations</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Aiming to contribute actively to GDG Thapar through event planning, tech learning, and campus society engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROW 4: GDG THAPAR ALIGNMENT -->
+        <section id="gdg-fit" class="bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md rounded-lg p-8 space-y-6 max-w-4xl mx-auto border-t-2 border-t-netflix-red shadow-2xl">
+            <div class="text-center space-y-2">
+                <span class="text-xs text-netflix-red font-mono uppercase font-extrabold tracking-widest">WHY GDG THAPAR?</span>
+                <h2 class="text-2xl md:text-3xl font-black text-white">Why Select Shlok Gaur for GDG?</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <div class="space-y-2">
+                    <div class="w-10 h-10 mx-auto bg-netflix-red/10 border border-netflix-red/30 rounded-full flex items-center justify-center text-netflix-red">
+                        <i class="fa-solid fa-fire text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-white">Proactive Learner</h3>
+                    <p class="text-xs text-gray-400">Self-driven in acquiring C++ DSA and modern web skills as a first-year student.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-10 h-10 mx-auto bg-netflix-red/10 border border-netflix-red/30 rounded-full flex items-center justify-center text-netflix-red">
+                        <i class="fa-solid fa-bullseye text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-white">Dual Advantage</h3>
+                    <p class="text-xs text-gray-400">Combines technical logic with finance and management capabilities for events.</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-10 h-10 mx-auto bg-netflix-red/10 border border-netflix-red/30 rounded-full flex items-center justify-center text-netflix-red">
+                        <i class="fa-solid fa-handshake text-lg"></i>
+                    </div>
+                    <h3 class="font-bold text-sm text-white">Team Player</h3>
+                    <p class="text-xs text-gray-400">Eager to collaborate, organize hackathons, and contribute to GDG Thapar goals.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-900 px-6 md:px-16 py-8 text-center text-xs text-gray-500 space-y-4 relative z-10 bg-black/90 backdrop-blur-md">
+        <div class="flex justify-center space-x-6 text-gray-400 text-base">
+            <a href="https://github.com/shlokg169-tech" target="_blank" class="hover:text-netflix-red transition"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/shlok-gaur" target="_blank" class="hover:text-netflix-red transition"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:shlokg169@gmail.com" class="hover:text-netflix-red transition"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>© 2026 Shlok Gaur • Thapar Institute of Engineering & Technology</p>
+    </footer>
+
+    <!-- MODAL POPUP -->
+    <div id="modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-zinc-950 border border-zinc-800 rounded-lg max-w-md w-full p-6 space-y-4 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content" class="space-y-3">
+                <!-- Content injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Code Rain Background
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const codeChars = ['#include', 'vector<int>', 'int main()', 'cout<<', 'cin>>', 'return 0;', 'struct', 'class', '0', '1', '{}', '[]', '->', '&&', '||', 'DSA', 'C++'];
+        const fontSize = 14;
+        const columns = Math.floor(window.innerWidth / 35);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.15)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = codeChars[Math.floor(Math.random() * codeChars.length)];
+                
+                // Balanced red matrix drops with bright head tokens
+                ctx.fillStyle = (Math.random() > 0.88) ? '#ff4d4d' : '#dc2626';
+                ctx.fillText(text, i * 35, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 55);
+
+        // Navigation Scroll Helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal Functionality
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openDetailModal(title, description, category) {
+            modalContent.innerHTML = `
+                <span class="text-netflix-red text-xs font-mono font-bold uppercase">${category}</span>
+                <h3 class="text-xl font-black text-white">${title}</h3>
+                <p class="text-sm text-gray-300 leading-relaxed">${description}</p>
+                <div class="pt-4 border-t border-zinc-800 flex justify-end">
+                    <button onclick="closeModal()" class="bg-netflix-red hover:bg-red-700 text-white font-bold px-4 py-1.5 rounded text-xs">
+                        Close
+                    </button>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function openContactModal() {
+            modalContent.innerHTML = `
+                <span class="text-netflix-red text-xs font-mono font-bold uppercase">My List (Contact Info)</span>
+                <h3 class="text-xl font-black text-white">Connect with Shlok Gaur</h3>
+                <div class="space-y-3 pt-2 text-sm text-gray-300">
+                    <div class="flex items-center space-x-3 bg-zinc-900 p-3 rounded border border-zinc-800">
+                        <i class="fa-brands fa-github text-netflix-red text-lg"></i>
+                        <a href="https://github.com/shlokg169-tech" target="_blank" class="hover:underline">shlokg169-tech</a>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-zinc-900 p-3 rounded border border-zinc-800">
+                        <i class="fa-brands fa-linkedin text-netflix-red text-lg"></i>
+                        <a href="https://www.linkedin.com/in/shlok-gaur" target="_blank" class="hover:underline">Shlok Gaur</a>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-zinc-900 p-3 rounded border border-zinc-800">
+                        <i class="fa-solid fa-envelope text-netflix-red text-lg"></i>
+                        <a href="mailto:shlokg169@gmail.com" class="hover:underline">shlokg169@gmail.com</a>
+                    </div>
+                </div>
+                <div class="pt-4 border-t border-zinc-800 flex justify-end">
+                    <button onclick="closeModal()" class="bg-netflix-red hover:bg-red-700 text-white font-bold px-4 py-1.5 rounded text-xs">
+                        Close
+                    </button>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
